@@ -11,8 +11,8 @@
   padding: 20px 200px;
 }
 
-.card-container :hover {
-  border: solid 1px rgb(145, 145, 145);
+.card {
+  width: 300px;
 }
 
 .card > img {
