@@ -16,3 +16,10 @@
 - Error handling
 - HTTPs
 - Tree shaking - remove unused code
+
+# React Hooks
+
+(Normal Js Utility Functions)
+
+- useState() - Superpowerful react variable
+- useEffect()
