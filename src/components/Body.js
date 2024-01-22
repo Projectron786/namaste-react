@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { CARD_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -14,9 +16,7 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.2599333&lng=77.412615&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(CARD_URL);
 
     const json = await data.json();
 
@@ -58,7 +58,7 @@ const Body = () => {
           <button
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4
+                (res) => res.info.avgRatingString > 4
               );
               setListOfRestaurants(filteredList);
             }}
@@ -70,7 +70,12 @@ const Body = () => {
 
       <div className="card-container">
         {filteredRestaurant.map((Restaurant) => (
-          <RestaurantCard key={Restaurant.info.id} resData={Restaurant} />
+          <Link
+            key={Restaurant.info.id}
+            to={"restaurants/" + Restaurant.info.id}
+          >
+            <RestaurantCard resData={Restaurant} />
+          </Link>
         ))}
       </div>
     </div>
