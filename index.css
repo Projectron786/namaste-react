@@ -23,6 +23,10 @@
   padding: 10px;
 }
 
+.nav-items > ul > li > link {
+  color: aliceblue;
+}
+
 .filter {
   padding: 10px;
 }

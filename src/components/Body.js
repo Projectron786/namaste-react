@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { CARD_URL } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { CARD_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
+  const [searchText, setSearchText] = useState("");
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-  const [searchText, setSearchText] = useState("");
+
+  const onlineStatus = useOnlineStatus();
 
   // Whenever State Variable updates, react trigger a reconciliation cycle (re-render the component)
 
@@ -29,6 +32,13 @@ const Body = () => {
     );
   };
 
+  if (onlineStatus === false)
+    return (
+      <h1>
+        "Look's like you are offline!!, Please check your internet connection"
+      </h1>
+    );
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -45,10 +55,10 @@ const Body = () => {
           ></input>
           <button
             onClick={() => {
-              const filteredRestaurant = listOfRestaurants.filter((res) =>
+              const filteredList = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFilteredRestaurant(filteredRestaurant);
+              setFilteredRestaurant(filteredList);
             }}
           >
             Search
@@ -58,7 +68,7 @@ const Body = () => {
           <button
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRatingString > 4
+                (res) => res.info.avgRating > 4
               );
               setListOfRestaurants(filteredList);
             }}
