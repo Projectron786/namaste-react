@@ -30,6 +30,7 @@ const Body = () => {
     setFilteredRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    console.log("Body Rendered", listOfRestaurants);
   };
 
   if (onlineStatus === false)
@@ -42,9 +43,9 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div>
       <div className="flex">
-        <div className="search">
+        <div>
           <input
             type="text"
             className="border border-solid border-black m-4"

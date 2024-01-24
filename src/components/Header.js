@@ -17,10 +17,10 @@ const Header = () => {
 
   return (
     <div className="flex justify-between shadow-lg sm:bg-blue-400 md:bg-green-200 lg:bg-pink-100">
-      <div className="logo-container">
+      <div>
         <img className="w-20 m-2" src={LOGO_URL} alt="food" />
       </div>
-      <div className="nav-items">
+      <div>
         <ul className="flex p-2 m-2 items-center">
           <li className="px-2">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
           <li className="px-2">
