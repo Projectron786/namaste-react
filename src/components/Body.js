@@ -30,6 +30,7 @@ const Body = () => {
     setFilteredRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    console.log("Body Rendered", listOfRestaurants);
   };
 
   if (onlineStatus === false)
@@ -42,18 +43,19 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div>
+      <div className="flex">
+        <div>
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black m-4"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           ></input>
           <button
+            className="bg-green-100 px-2 rounded-lg"
             onClick={() => {
               const filteredList = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -64,8 +66,9 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="filter-btn">
+        <div className="flex items-center px-2 mx-2">
           <button
+            className=" bg-gray-200 px-2 rounded-lg"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4
@@ -78,12 +81,13 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="card-container">
+      <div className="flex flex-wrap">
         {filteredRestaurant.map((Restaurant) => (
           <Link
             key={Restaurant.info.id}
             to={"restaurants/" + Restaurant.info.id}
           >
+            {/* // Create a Higher Order component to display promotes restaurant feature! */}
             <RestaurantCard resData={Restaurant} />
           </Link>
         ))}
