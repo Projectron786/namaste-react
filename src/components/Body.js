@@ -30,7 +30,6 @@ const Body = () => {
     setFilteredRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    console.log("Body Rendered", listOfRestaurants);
   };
 
   if (onlineStatus === false)
