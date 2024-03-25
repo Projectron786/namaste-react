@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { CARD_URL } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -30,7 +31,6 @@ const Body = () => {
     setFilteredRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    console.log("Body Rendered", listOfRestaurants);
   };
 
   if (onlineStatus === false)
@@ -39,6 +39,8 @@ const Body = () => {
         "Look's like you are offline!!, Please check your internet connection"
       </h1>
     );
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -78,6 +80,14 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
+        </div>
+        <div className="flex items-center px-2 mx-2">
+          <label>User name:</label>
+          <input
+            className="border border-black p-2 m-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
         </div>
       </div>
 
