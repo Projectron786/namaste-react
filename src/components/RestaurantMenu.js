@@ -5,6 +5,7 @@ import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
 const RestaurantMenu = () => {
+
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);

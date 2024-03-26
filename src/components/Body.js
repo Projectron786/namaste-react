@@ -78,6 +78,8 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+        <label>Username : </label>
+        <input></input>
       </div>
 
       <div className="flex flex-wrap">
