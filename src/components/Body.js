@@ -80,12 +80,6 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
-          <label className="px-2">Username :</label>
-          <input
-            className="border border-solid border-black m-4"
-            value={loggedInUser}
-            onChange={(e) => setUserName(e.target.value)}
-          />
         </div>
         <div className="flex items-center px-2 mx-2">
           <label>User name:</label>

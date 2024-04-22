@@ -7,17 +7,14 @@ import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 import { useContext } from "react";
 
-
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
   const onlineStatus = useOnlineStatus();
 
-
   const data = useContext(UserContext);
 
   const { loggedInUser } = useContext(UserContext);
-
 
   // if no dependency array => useEffect is called on every render
   // if empty dependency array = [] => useEffect is called on intial render(just once)
@@ -63,8 +60,6 @@ const Header = () => {
           </button>
 
           <li className="px-2 font-bold">{data.loggedInUser}</li>
-
-          <li className="px-2 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>
