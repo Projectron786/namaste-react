@@ -87,6 +87,14 @@ const Body = () => {
             onChange={(e) => setUserName(e.target.value)}
           />
         </div>
+        <div className="flex items-center px-2 mx-2">
+          <label>User name:</label>
+          <input
+            className="border border-black p-2 m-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
+        </div>
       </div>
 
       <div className="flex flex-wrap">
