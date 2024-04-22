@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { useContext } from "react";
+
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
+import { useContext } from "react";
+
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
   const onlineStatus = useOnlineStatus();
 
+
+  const data = useContext(UserContext);
+
   const { loggedInUser } = useContext(UserContext);
+
 
   // if no dependency array => useEffect is called on every render
   // if empty dependency array = [] => useEffect is called on intial render(just once)
@@ -18,6 +25,10 @@ const Header = () => {
   // const useEffect(() => {
 
   // });
+
+  // Subscribing to the store using selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="flex justify-between shadow-lg sm:bg-blue-400 md:bg-green-200 lg:bg-pink-100">
@@ -39,7 +50,9 @@ const Header = () => {
           <li className="px-2">
             <Link to="/about">About</Link>
           </li>
-          <li className="px-2">Cart</li>
+          <li className="px-2 font-bold text-xl">
+            <Link to="/cart">Cart - ({cartItems.length} items)</Link>
+          </li>
           <button
             className="px-2"
             onClick={() => {
@@ -48,6 +61,9 @@ const Header = () => {
           >
             {btnName}
           </button>
+
+          <li className="px-2 font-bold">{data.loggedInUser}</li>
+
           <li className="px-2 font-bold">{loggedInUser}</li>
         </ul>
       </div>

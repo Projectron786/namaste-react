@@ -28,3 +28,13 @@
 
 - Server Side Routing
 - Client Side Routing
+
+# Redux toolkit
+
+- Install @reduxjs/toolkit and react-redux
+- Build out store
+- Connect our store to our app
+- Connect our store to our app
+- Slice (cartSlice)
+- dispatch(action)
+- Selector
