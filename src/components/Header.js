@@ -63,8 +63,6 @@ const Header = () => {
           </button>
 
           <li className="px-2 font-bold">{data.loggedInUser}</li>
-
-          <li className="px-2 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>
